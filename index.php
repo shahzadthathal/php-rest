@@ -7,25 +7,25 @@
   // Access by Programs like mobile apps
   //Resposne will be in json or xml
  
-	//header("Content-Type:application/json");
+	header("Content-Type:application/json");
 
 	require 'functions.php';
 
 	if(!empty($_GET['name'])){
 		$price = get_price($_GET['name']);
 		if(empty($price))
-			response(200,'Book not found',null);
+			deliverResponse(200,'Book not found',null);
 		else
-		    response(200,'Book found',$price);
+		    deliverResponse(200,'Book found',$price);
 	}
 	else{
-		response(400,'Invalid Request',null);
+		deliverResponse(400,'Invalid Request',null);
 	}
 
   	
 
-  	function response($status,$status_message,$data){
-  		  //header("HTTP 1.1/ $status $status_message");
+  	function deliverResponse($status,$status_message,$data){
+  		  header("HTTP/1.1 $status $status_message");
   		  $response['status'] = $status;
   		  $response['status_message'] = $status_message;
   		  $response['data'] = $data;

@@ -1,3 +1,5 @@
+# Trun on the rewrite engine
 RewriteEngine on
 
-#RewriteRule ^([a-zA-Z0-9]) index.php?name=$i
+# Request routing
+RewriteRule ^([a-zA-Z]*)$ index.php?name=$1 [nc,qsa]
